@@ -9,15 +9,15 @@ public class NewClient {
 	    static Socket socket;										//기본 설정
 	    static OutputStream os;
 	    static DataOutputStream out;
-	    private static String ip = "192.168.90.1"; // IP
+	    public static String ip = "192.168.90.1"; // IP
 	    private static int port = 9999; // PORT번호
 	    private static byte protocol [] = {0x02,0x0A,0x01,0,0,0,0,0,0,0x03};
 	    
-	    public void changeIp(String in)
+	    public static void changeIp(String in)
 	    {
 	    	ip = (String)in;
 	    }
-	    public String getIp()
+	    public static String getIp()
 	    {
 	    	return (String)ip;
 	    }

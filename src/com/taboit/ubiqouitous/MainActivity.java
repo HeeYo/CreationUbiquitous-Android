@@ -12,7 +12,6 @@ public class MainActivity extends Activity {
 	Activity act = this;
 	TcpSend tcpThread = null;
 	TextView ipView =null;
-	NewClient newClient = new NewClient();
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -20,7 +19,7 @@ public class MainActivity extends Activity {
 		
 		
 		ipView = (TextView)findViewById(R.id.editText1);
-		ipView.setHint(newClient.getIp());
+		ipView.setHint(NewClient.getIp());
 
 		but1 = (Button)findViewById(R.id.button1);
 		but1.setOnClickListener(listener);
@@ -32,6 +31,8 @@ public class MainActivity extends Activity {
 		but4.setOnClickListener(listener);
 		but_ip = (Button)findViewById(R.id.button5);
 		but_ip.setOnClickListener(listener);
+		NewClient.protocolSet(new byte [] {0,0,0,0,0});
+		tcpThread = (TcpSend) new TcpSend().execute((Void) null);
 		
 	}
 	Button.OnClickListener listener = new Button.OnClickListener()
@@ -57,13 +58,12 @@ public class MainActivity extends Activity {
 					tcpThread = (TcpSend) new TcpSend().execute((Void) null);
 					break;
 				case R.id.button5 :
-					Toast.makeText(act.getBaseContext(), ipView.getText(), Toast.LENGTH_SHORT).show();
-					newClient.changeIp(ipView.getText().toString());
-					//ipView.setText(NewClient.getIp());
+					Toast.makeText(act.getBaseContext(), ipView.getText(), Toast.LENGTH_SHORT).show();			//버그 존재. 이유는 잘 모르곘는데 처음 바로 실행하면 크래시뜸
+					NewClient.changeIp(ipView.getText().toString());
 					break;
 			}
 			try {
-				Thread.sleep(5);
+				Thread.sleep(1);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
