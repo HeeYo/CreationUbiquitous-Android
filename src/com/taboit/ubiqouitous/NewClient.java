@@ -13,6 +13,7 @@ public class NewClient {
 	    private static int port = 9999; // PORT번호
 	    private static byte protocol [] = {0x02,0x0A,0x01,0,0,0,0,0,0,0x03};
 	    
+<<<<<<< HEAD
 	    public static void changeIp(String in)
 	    {
 	    	ip = (String)in;
@@ -21,6 +22,8 @@ public class NewClient {
 	    {
 	    	return (String)ip;
 	    }
+=======
+>>>>>>> parent of 527b82e... Added IP change feature
 	    public static void setSocket() throws IOException {
 	        try {
 	        	init();
@@ -44,6 +47,7 @@ public class NewClient {
            	os = socket.getOutputStream();
             out = new DataOutputStream(os);
 	    }
+	    //STX	OPCODE	ADDR	DNUM	DATA0~DATA3	CHKSUM	EXT
 	    public static void protocolSet(byte [] data)		//전달받는 데이터는 5개 0~4
 	    {	
 	    	int j = 0;
@@ -60,3 +64,7 @@ public class NewClient {
 	    	protocol[8] = (byte) ~CHKSUM;
 	    }
 }
+/*
+ *			protocolSet(new byte [] {0,1,2,3,4});			//인자 전달 후 소켓 열후 데이터 구성한 뒤, 전송한다.
+ *   		setSocket();
+*/

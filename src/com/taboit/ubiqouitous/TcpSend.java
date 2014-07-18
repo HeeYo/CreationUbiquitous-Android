@@ -16,4 +16,3 @@ public class TcpSend extends AsyncTask<Void, Void, Void> {
 	}
 
 }
-
